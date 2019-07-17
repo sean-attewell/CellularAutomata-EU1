@@ -28,69 +28,6 @@ for row in range(SQ_NUM):
         automata[row * SQ_NUM + col] = random.randint(0, 1)
 
 
-# Update State ( Add Rules to update each cell based on it's previous state )
-
-# Create a new automata for the next state
-new_automata = [0] * (SQ_NUM * SQ_NUM)
-
-for i in range(len(automata)):
-    live = 0
-    dead = 8
-
-    # look at neighbors
-    # (8 if conditions)
-
-    # left Neighbour
-    if i - 1 >= 0 and automata[i - 1]:
-        live += 1
-    # right Neighbour 
-    if i + 1 < (SQ_NUM * SQ_NUM) and automata[i + 1]:
-        live += 1
-    # Below Neighbour
-    if (i + SQ_NUM) < (SQ_NUM * SQ_NUM) and automata[i + SQ_NUM]:
-        live += 1
-    # Above Neighbour
-    if (i - SQ_NUM) >= 0 and automata[i - SQ_NUM]:
-        live += 1
-    # Top Left Neighbour
-    if (i - SQ_NUM - 1) >= 0 and automata[i - SQ_NUM - 1]:
-        live += 1
-    # Top Right Neighbour
-    if (i - SQ_NUM + 1) >= 0 and automata[i - SQ_NUM + 1]:
-        live += 1
-    # Bottom Left Neighbour
-    if (i + SQ_NUM - 1) < (SQ_NUM * SQ_NUM) and automata[i + SQ_NUM - 1]:
-        live += 1
-    # Bottom Right Neighbour
-    if (i + SQ_NUM + 1) < (SQ_NUM * SQ_NUM) and automata[i + SQ_NUM + 1]:
-        live += 1    
-
-    # Update State
-    # if there are less than 2 living neighbors the cell dies
-    if automata[i] and live < 2:
-        new_automata[i] = 0
-    # if alive and has less than 4 neighbors then cell carrys on living
-    elif automata[i] and live < 4:
-        new_automata[i] = 1
-    # TODO: 3 more conditions
-    # if alive and has 4 or more neighbours, the cells dies
-    elif automata[i] and live < 9:
-        new_automata[i] = 0
-    # if dead and exactly 3 neighbours, come to life
-    elif not automata[i] and live == 3:
-        new_automata[i] = 1
-    # else cell is dead and has no reason to come to life:    
-    else:
-        new_automata[i] = 0
-
-# swap the data for the next generations data
-automata = new_automata
-
-
-
-
-
-
 # Add a title
 pygame.display.set_caption("Conway's Game of Life")
  
@@ -108,7 +45,64 @@ while not done:
             done = True
  
     # --- Game logic should go here
-    
+    # Update State ( Add Rules to update each cell based on it's previous state )
+
+    # Create a new automata for the next state
+    new_automata = [0] * (SQ_NUM * SQ_NUM)
+
+
+
+    for i in range(len(automata)):
+        live = 0
+        dead = 8
+        # look at neighbors
+        # (8 if conditions)
+
+        # left Neighbour
+        if i - 1 >= 0 and automata[i - 1]:
+            live += 1
+        # right Neighbour 
+        if i + 1 < (SQ_NUM * SQ_NUM) and automata[i + 1]:
+            live += 1
+        # Below Neighbour
+        if (i + SQ_NUM) < (SQ_NUM * SQ_NUM) and automata[i + SQ_NUM]:
+            live += 1
+        # Above Neighbour
+        if (i - SQ_NUM) >= 0 and automata[i - SQ_NUM]:
+            live += 1
+        # Top Left Neighbour
+        if (i - SQ_NUM - 1) >= 0 and automata[i - SQ_NUM - 1]:
+            live += 1
+        # Top Right Neighbour
+        if (i - SQ_NUM + 1) >= 0 and automata[i - SQ_NUM + 1]:
+            live += 1
+        # Bottom Left Neighbour
+        if (i + SQ_NUM - 1) < (SQ_NUM * SQ_NUM) and automata[i + SQ_NUM - 1]:
+            live += 1
+        # Bottom Right Neighbour
+        if (i + SQ_NUM + 1) < (SQ_NUM * SQ_NUM) and automata[i + SQ_NUM + 1]:
+            live += 1    
+
+        # Update State
+        # if there are less than 2 living neighbors the cell dies
+        if automata[i] and live < 2:
+            new_automata[i] = 0
+        # if alive and has less than 4 neighbors then cell carrys on living
+        elif automata[i] and live < 4:
+            new_automata[i] = 1
+        # TODO: 3 more conditions
+        # if alive and has 4 or more neighbours, the cells dies
+        elif automata[i] and live < 9:
+            new_automata[i] = 0
+        # if dead and exactly 3 neighbours, come to life
+        elif not automata[i] and live == 3:
+            new_automata[i] = 1
+        # else cell is dead and has no reason to come to life:    
+        else:
+            new_automata[i] = 0
+
+    # swap the data for the next generations data
+    automata = new_automata
 
  
     # --- Screen-clearing code goes here
