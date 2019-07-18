@@ -39,18 +39,18 @@ for row in range(SQ_NUM):
 # TODO: add some special figures on to the screen
 
 # Block
-automata[3] = 1
-automata[4] = 1
-automata[SQ_NUM + 3] = 1
-automata[SQ_NUM + 4] = 1
+# automata[3] = 1
+# automata[4] = 1
+# automata[SQ_NUM + 3] = 1
+# automata[SQ_NUM + 4] = 1
 
 # Bee-Hive
-automata[SQ_NUM - 6] = 1
-automata[SQ_NUM - 5] = 1
-automata[SQ_NUM + SQ_NUM - 4] = 1
-automata[SQ_NUM + SQ_NUM - 7] = 1
-automata[2 * SQ_NUM + SQ_NUM - 5] = 1
-automata[2 * SQ_NUM + SQ_NUM - 6] = 1
+# automata[SQ_NUM - 6] = 1
+# automata[SQ_NUM - 5] = 1
+# automata[SQ_NUM + SQ_NUM - 4] = 1
+# automata[SQ_NUM + SQ_NUM - 7] = 1
+# automata[2 * SQ_NUM + SQ_NUM - 5] = 1
+# automata[2 * SQ_NUM + SQ_NUM - 6] = 1
 
 
 # Blinker
